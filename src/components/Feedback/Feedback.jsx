@@ -11,17 +11,19 @@ export class Feedback extends React.Component {
 
   handleChange = (grade) => {
     switch (grade) {
-      case 'good': this.setState({ good: this.state.good + 1 });
+      // case 'good': this.setState({ good: this.state.good + 1 });
+      case 'good': this.setState(prevState => ({ good: prevState.good + 1 }));
         break;
-      case 'neutral': this.setState({ neutral: this.state.neutral + 1 });
+      case 'neutral': this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
         break;
-      case 'bad': this.setState({ bad: this.state.bad + 1 });
+      case 'bad': this.setState(prevState => ({ bad: prevState.bad + 1 }));
         break;
       default: console.log('Something wrong')
     }
   }
 
   countTotalFeedback() {
+    // в кожній функції роблю деструктуризацію стейту?
     const { good, neutral, bad } = this.state;
     return good + neutral + bad;
   }
