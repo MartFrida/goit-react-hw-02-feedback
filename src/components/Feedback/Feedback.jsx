@@ -39,7 +39,7 @@ export class Feedback extends React.Component {
         <StyledHeader>Please leave feedback</StyledHeader>
         <StyledButtonsWrapper>
           <StyledButton onClick={() => this.handleChange('good')} >Good</StyledButton>
-          <StyledButton onClick={() => this.handleChange('neutral')}>Neutal</StyledButton>
+          <StyledButton onClick={() => this.handleChange('neutral')}>Neutral</StyledButton>
           <StyledButton onClick={() => this.handleChange('bad')}>Bad</StyledButton>
         </StyledButtonsWrapper>
 
@@ -51,7 +51,7 @@ export class Feedback extends React.Component {
               <StyledTd>{good}</StyledTd>
             </tr>
             <tr>
-              <StyledTd>Neutal</StyledTd>
+              <StyledTd>Neutral</StyledTd>
               <StyledTd>{neutral}</StyledTd>
             </tr>
             <tr>
