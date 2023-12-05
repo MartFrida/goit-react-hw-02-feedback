@@ -1,5 +1,7 @@
 import React from "react";
 import { StyledButton, StyledButtonsWrapper, StyledFeedback, StyledHeader, StyledTable, StyledTd } from "./Feedback.styled"
+import { Statistics } from "../Statistics/Statistics";
+import { FeedbackOptions } from "../FeedbackOptions/FeedbackOptions";
 
 
 export class Feedback extends React.Component {
@@ -9,9 +11,8 @@ export class Feedback extends React.Component {
     bad: 0
   }
 
-  handleChange = (grade) => {
+  onLeaveFeedback = (grade) => {
     switch (grade) {
-      // case 'good': this.setState({ good: this.state.good + 1 });
       case 'good': this.setState(prevState => ({ good: prevState.good + 1 }));
         break;
       case 'neutral': this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
@@ -23,53 +24,23 @@ export class Feedback extends React.Component {
   }
 
   countTotalFeedback() {
-    // в кожній функції роблю деструктуризацію стейту?
     const { good, neutral, bad } = this.state;
     return good + neutral + bad;
   }
-  countPositiveFeedbackPercentage() {
-    const { good, neutral, bad } = this.state;
-    // return Math.round((good * 100 / (good + neutral + bad)), -2);
-    return (good * 100 / (good + neutral + bad)).toFixed(2);
+  countPositiveFeedbackPercentage(good, total) {
+    return (good * 100 / total).toFixed(2);
   }
 
   render() {
     const { good, neutral, bad } = this.state
+    const total = this.countTotalFeedback()
     return (
       <StyledFeedback>
 
         <StyledHeader>Please leave feedback</StyledHeader>
-        <StyledButtonsWrapper>
-          <StyledButton onClick={() => this.handleChange('good')} >Good</StyledButton>
-          <StyledButton onClick={() => this.handleChange('neutral')}>Neutral</StyledButton>
-          <StyledButton onClick={() => this.handleChange('bad')}>Bad</StyledButton>
-        </StyledButtonsWrapper>
+        <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback} />
 
-        <StyledHeader>Statistic</StyledHeader>
-        <StyledTable>
-          <tbody>
-            <tr>
-              <StyledTd>Good</StyledTd>
-              <StyledTd>{good}</StyledTd>
-            </tr>
-            <tr>
-              <StyledTd>Neutral</StyledTd>
-              <StyledTd>{neutral}</StyledTd>
-            </tr>
-            <tr>
-              <StyledTd>Bad</StyledTd>
-              <StyledTd>{bad}</StyledTd>
-            </tr>
-            <tr>
-              <StyledTd>Total</StyledTd>
-              <StyledTd>{this.countTotalFeedback()}</StyledTd>
-            </tr>
-            <tr>
-              <StyledTd>Positive feedback</StyledTd>
-              <StyledTd>{this.countPositiveFeedbackPercentage()}%</StyledTd>
-            </tr>
-          </tbody>
-        </StyledTable>
+        <Statistics good={good} neutral={neutral} bad={bad} total={total} countTotalFeedback={this.countTotalFeedback()} countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage(good, total)} />
       </StyledFeedback>
     )
   }

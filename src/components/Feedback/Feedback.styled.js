@@ -27,11 +27,10 @@ padding:5px 10px;
 border:1px solid grey;
 border-radius: 5px;
 cursor:pointer;
-
- /* hou add hover to button */
-/* :hover &  {
+ 
+&:hover  {
   color:red;
-} */
+} 
 `;
 
 export const StyledTable = styled.table`
