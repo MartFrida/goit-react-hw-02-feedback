@@ -1,9 +1,10 @@
 import { StyledHeader, StyledTable, StyledTd } from "../Feedback/Feedback.styled"
 
-export const Statistics = ({ good, neutral, bad, total, countTotalFeedback, countPositiveFeedbackPercentage }) => {
+export const Statistics = ({ good, neutral, bad, countTotalFeedback, countPositiveFeedbackPercentage }) => {
   return (
     <>
-      <StyledHeader>Statistic</StyledHeader>
+
+      <StyledHeader >Statistic</StyledHeader>
       <StyledTable>
         <tbody>
           <tr>
@@ -19,12 +20,12 @@ export const Statistics = ({ good, neutral, bad, total, countTotalFeedback, coun
             <StyledTd>{bad}</StyledTd>
           </tr>
           <tr>
-            {total ? <> <StyledTd>Total</StyledTd>
-              <StyledTd>{countTotalFeedback}</StyledTd> </> : null}
+            <StyledTd>Total</StyledTd>
+            <StyledTd>{countTotalFeedback}</StyledTd>
           </tr>
           <tr>
-            {total ? <>  <StyledTd>Positive feedback</StyledTd>
-              <StyledTd>{countPositiveFeedbackPercentage}%</StyledTd></> : null}
+            <StyledTd>Positive feedback</StyledTd>
+            <StyledTd>{countPositiveFeedbackPercentage}%</StyledTd>
           </tr>
         </tbody>
       </StyledTable>
